@@ -3,7 +3,7 @@
 #
 
 # Добавьте источник в исполняемый файл этого проекта.
-add_executable (Minlang "Minlang.cpp" "Minlang.h")
+add_executable (Minlang "Minlang.cpp"  "defs.h" "defs.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET Minlang PROPERTY CXX_STANDARD 20)
