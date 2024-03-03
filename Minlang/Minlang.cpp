@@ -24,15 +24,11 @@ int main(int argcount, char *args[])
 	}
 
 	bool end_flag = false;
-	char string[40];
-	while (!end_flag)
+	char string[40];;
+	while (!feof(file))
 	{
 		fgets(string, sizeof(string), file);
 		printf("%s", string);
-		if (check_string_start(string, (char *)"end"))
-		{
-			end_flag = true;
-		}
 	}
 
 	fclose(file);
