@@ -17,14 +17,12 @@ bool compare_strings(char string1[], char string2[])
 	int string2_len = count_len(string2);
 	int reference = 0;
 
-	if (string1_len > string2_len)
+	if (string1_len != string2_len)
 	{
-		reference = string2_len;
+		return false;
 	}
-	else
-	{
-		reference = string1_len;
-	}
+	
+	reference = string1_len;
 	
 	for (int i = 0; i < reference; i++)
 	{

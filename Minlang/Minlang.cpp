@@ -1,9 +1,8 @@
-﻿// Minlang.cpp: определяет точку входа для приложения.
-//
-
-#include <stdio.h>
+﻿#include <stdio.h>
 #include "defs.h"
+#include "parser.h"
 
+char memory[1024][2];
 
 int main(int argcount, char *args[]) 
 {
@@ -12,8 +11,6 @@ int main(int argcount, char *args[])
 		printf("No file given");
 		return 0;
 	}
-
-
 
 	FILE* file;
 	file = fopen(args[1], "r");
@@ -24,7 +21,7 @@ int main(int argcount, char *args[])
 	}
 
 	bool end_flag = false;
-	char string[40];;
+	char string[40];
 	while (!feof(file))
 	{
 		fgets(string, sizeof(string), file);
