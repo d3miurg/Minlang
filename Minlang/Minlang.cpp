@@ -1,38 +1,36 @@
-﻿#include <stdio.h>
-#include "defs.h"
+﻿#include <iostream>
+#include <fstream>
+#include <string>
+#include <map>
 #include "parser.h"
 
-char memory[1024][2];
+using namespace std;
+
+map<string, unsigned> memory;
 
 int main(int argcount, char *args[]) 
 {
 	if (args[1] == NULL)
 	{
-		printf("No file given");
+		cout << "No file given" << endl;
 		return 0;
 	}
 
-	FILE* file;
-	file = fopen(args[1], "r");
-	if (file == NULL)
+	ifstream file(args[1]);
+	if (!file.is_open())
 	{
-		printf("File does not exist");
+		cout << "File does not exist" << endl;
 		return 0;
 	}
 
-	char string[40];
-	while (!feof(file))
+	string line;
+	while (getline(file, line))
 	{
-		fgets(string, sizeof(string), file);
-		printf("%s", string);
+		cout << line << endl;
 
-		if (check_string_start(string, (char *)"new_name"))
-		{
-			trim_command(string);
-			printf("%s", string);
-		}
+		parse_command(&line, memory);
 	}
 
-	fclose(file);
+	file.close();
 	return 0;
 }
