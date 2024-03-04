@@ -20,12 +20,17 @@ int main(int argcount, char *args[])
 		return 0;
 	}
 
-	bool end_flag = false;
 	char string[40];
 	while (!feof(file))
 	{
 		fgets(string, sizeof(string), file);
 		printf("%s", string);
+
+		if (check_string_start(string, (char *)"new_name"))
+		{
+			trim_command(string);
+			printf("%s", string);
+		}
 	}
 
 	fclose(file);

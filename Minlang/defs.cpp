@@ -67,3 +67,17 @@ bool check_string_end(char string[], char end[])
 
 	return true;
 }
+
+void trim_command(char string[])
+{
+	int string_len = count_len(string);
+
+	for (int i = 0; i < string_len; i++)
+	{
+		if (string[i] == '(')
+		{
+			break;
+		}
+		string[i] = (char)"";
+	}
+}
