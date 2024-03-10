@@ -6,11 +6,13 @@
 #include "parser.h"
 
 using namespace std;
+int lines_count = 0;
 
-list<string> all_lines = {};
+map<unsigned, string> all_lines = {};
 
 map<string, string> command_memory;
-map<string, unsigned[]> data_memory;
+map<string, string> data_memory;
+map<string, string> function_memory;
 
 int main(int argcount, char *args[]) 
 {
@@ -28,14 +30,16 @@ int main(int argcount, char *args[])
 	}
 
 	string line;
+	int lines_count = 0;
 	while (getline(file, line))
 	{
-		all_lines.push_back(line);
+		all_lines[lines_count] = line;
+		lines_count++;
 	}
 
-	for (string n : all_lines)
+	for (int j = 0; j < lines_count; j++)
 	{
-		cout << n << endl;
+		cout << all_lines[j] << endl;
 	}
 
 	file.close();
