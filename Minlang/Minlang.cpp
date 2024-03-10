@@ -2,11 +2,15 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <list>
 #include "parser.h"
 
 using namespace std;
 
-map<string, unsigned> memory;
+list<string> all_lines = {};
+
+map<string, string> command_memory;
+map<string, unsigned[]> data_memory;
 
 int main(int argcount, char *args[]) 
 {
@@ -26,9 +30,12 @@ int main(int argcount, char *args[])
 	string line;
 	while (getline(file, line))
 	{
-		cout << line << endl;
+		all_lines.push_back(line);
+	}
 
-		parse_command(&line, memory);
+	for (string n : all_lines)
+	{
+		cout << n << endl;
 	}
 
 	file.close();

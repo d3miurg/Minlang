@@ -1,4 +1,7 @@
 #include <iostream>
 #include <map>
 
-void parse_command(std::string *command_line, std::map<std::string, unsigned> memory);
+using namespace std;
+
+void parse_command(string *command_line, map<string, string> memory);
+void trim_command(string* command);

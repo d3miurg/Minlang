@@ -1,22 +1,30 @@
 #include <iostream>
 #include <map>
+#include <chrono>
+#include <thread>
 
 using namespace std;
+using namespace std::this_thread;
 
-string trim_command(string *command, int command_lenght)
+void trim_command(string *command)
 {
 	string value = *command;
-	value.erase(0, command_lenght);
+	
+	while (value[0] != '(')
+	{
+		value.erase(0, 1);
+	}
+	value.erase(0, 1);
 	value.erase(value.length() - 1, value.length());
 	*command = value;
 }
 
-void parse_command(string *command_line, map<string, unsigned> memory) 
+void parse_command(string *command_line, map<string, string> memory) 
 {	
 	string command = *command_line;
 	if (command.starts_with("new_name"))
 	{
-		trim_command(&command, 9);
+		trim_command(&command);
 		cout << command << endl;
 	}
 }
